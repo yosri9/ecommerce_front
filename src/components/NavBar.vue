@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <div>
     <v-col cols="12" order-sm="4">
 
       <v-toolbar app color="black" light>
@@ -64,7 +64,7 @@
             >
 
               <router-link style="color: white;   text-decoration: none;
-                  " to="">
+                  " to="About">
 
                 Promotions
 
@@ -87,25 +87,24 @@
 
             <search-component class="mx-10"/>
 
+            <div id="cart-item" class="mx-10  ">
+              <v-icon size="25px" color="#9B9BF8" class="cart-column "> mdi-cart-outline</v-icon>
+
+
+              <h4 STYLE="color: darkgray;"> Cart</h4>
+
+            </div>
+
+
             <div id="cart-profile" class="d-inline-flex ml-5">
 
-              <router-link to="/cart" style="text-decoration: none">
 
 
-                <div id="cart-item" class="mx-10 mt-1">
-                  <v-icon size="25px" color="#9B9BF8" class="cart-column mt-3"> mdi-cart-outline</v-icon>
+              <div id="profile" class="profile">
+                <AvatarComponent/>
 
 
-                  <h4 STYLE="color: darkgray ;"> Cart</h4>
-
-                </div>
-              </router-link>
-
-                <div id="profile" class="profile">
-                  <AvatarComponent/>
-
-
-                </div>
+              </div>
 
 
             </div>
@@ -117,44 +116,58 @@
 
       </v-toolbar>
 
-      <v-main>
+      <v-content>
         <router-view/>
-      </v-main>
-
-
-      <CenteredDivider/>
-
-      <NewsLetter class="center"/>
-      <FooterComponent/>
+      </v-content>
     </v-col>
 
-  </v-app>
+
+  </div>
 </template>
 
+
 <script>
-import HelloWorld from "./components/HelloWorld";
 import SearchComponent from "@/components/SearchComponent";
 import AvatarComponent from "@/components/AvatarComponent";
-import FooterComponent from "@/components/FooterComponent";
-import NewsLetter from "@/components/NewsLetter";
-import CenteredDivider from "@/components/CenteredDivider";
-
 export default {
-  name: "App",
+  name: "NavBar",
   components: {
-    FooterComponent,
-    AvatarComponent,
-    SearchComponent,
-    NewsLetter,
-    CenteredDivider,
 
-    // eslint-disable-next-line vue/no-unused-components
-    HelloWorld,
-  },
-  data() {
-    return {
-      //
-    };
+    SearchComponent,
+    AvatarComponent
+
   }
-};
+}
 </script>
+
+<style scoped>
+.cart-column {
+  margin-right: 56%;
+  margin-bottom: 10px;
+
+  padding-top: 39px;
+
+
+}
+
+h4 {
+
+  color: darkgray;
+}
+
+.avatar-nav-bar {
+
+  padding: 15px;
+  margin-top: 1px;
+  margin-left: 10px;
+}
+
+
+.logo-name {
+  margin-right: 50px;
+  margin-left: 33px;
+  display: inline-flex;
+
+}
+
+</style>
