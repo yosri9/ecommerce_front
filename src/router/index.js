@@ -2,7 +2,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import CartView from "@/views/CartView";
-import Favorite from "@/views/Favorite";
+import AccountView from "@/views/AccountView";
+import FavoriteView from "@/views/FavoriteView";
+import LatestPurchasesView from "@/views/LatestPurchasesView";
+import PaymentInformationView from "@/views/PaymentInformationView";
+import ProductView from "@/views/ProductView";
 
 Vue.use(VueRouter)
 
@@ -32,7 +36,34 @@ const routes = [
   {
     path: '/favorite',
     name: 'favorite',
-    component: Favorite
+    component: FavoriteView
+
+  },
+
+  {
+    path: '/Account',
+    name: 'account',
+    component: AccountView
+
+  },
+
+  {
+    path: '/Latest-purchases',
+    name: 'latestPurchases',
+    component: LatestPurchasesView
+
+  },
+
+  {
+    path: '/payment-information',
+    name: 'paymentInformation',
+    component: PaymentInformationView
+
+  },
+  {
+    path: '/product',
+    name: 'product',
+    component: ProductView
 
   }
 ]

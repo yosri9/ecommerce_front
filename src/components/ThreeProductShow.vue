@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import ShadowedProduct from "@/components/ShadowedProduct";
+import ShadowedProduct from "@/components/Product/ShadowedProduct";
 export default {
   name: "ThreeProductShow",
   components: {ShadowedProduct}

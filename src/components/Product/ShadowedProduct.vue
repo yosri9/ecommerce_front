@@ -1,4 +1,5 @@
 <template>
+  <BaseProductCard>
     <div class="text--primary">
       <!-- Using the elevation prop -->
       <v-hover>
@@ -8,7 +9,7 @@
               class="mx-auto pa-6"
           >
             <v-img height="200" width="200"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz6VomV5-9JmXSp14fnSBjtH9khjnHo3Jg5vwvBwA_Mx2KjYtnI34cM6PhXVs-hNIRVbE&usqp=CAU"/>
+                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz6VomV5-9JmXSp14fnSBjtH9khjnHo3Jg5vwvBwA_Mx2KjYtnI34cM6PhXVs-hNIRVbE&usqp=CAU"/>
           </v-card>
         </template>
       </v-hover>
@@ -16,12 +17,15 @@
 
 
     </div>
+
+  </BaseProductCard>
 </template>
 
 <script>
+import BaseProductCard from "@/components/Product/BaseProductCard";
 export default {
   name: "ShadowedProduct",
-
+  components: {BaseProductCard},
   props: {
     height: String,
     width:String

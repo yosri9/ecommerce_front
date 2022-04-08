@@ -16,7 +16,7 @@
             color="primary"
             @click="loader = 'loading'"
         >
-          Buy all
+          Add all to cart
         </v-btn>
 
         <v-btn
@@ -38,7 +38,7 @@
 
           <div class="ma-5 " v-for="n in 10" v-bind:key="n">
 
-            <InteractiveProductCard/>
+            <FavoriteInteractiveProductCard  />
 
 
           </div>
@@ -58,11 +58,11 @@
 
 <script>
 import FilterComponent from "@/components/FilterComponent";
-import InteractiveProductCard from "@/components/Product/CartInteractiveProductCard";
+import FavoriteInteractiveProductCard from "@/components/Product/FavoriteInteractiveProductCard";
 
 export default {
-  name: "CartView",
-  components: {InteractiveProductCard, FilterComponent,},
+  name: "FavoriteView",
+  components: {FavoriteInteractiveProductCard,  FilterComponent,},
   data: () => ({
     show: true,
   }),

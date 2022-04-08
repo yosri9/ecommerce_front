@@ -41,17 +41,22 @@
                 {{ user.email }}
               </p>
               <v-divider class="my-3"></v-divider>
-              <v-btn
-                  depressed
-                  rounded
-                  text
-              >
-                Account
-              </v-btn>
+
+              <router-link to="/account" style="text-decoration:none ">
+
+                <v-btn
+                    depressed
+                    rounded
+                    text
+                >
+                  Account
+                </v-btn>
+
+              </router-link>
 
               <v-divider class="my-3"></v-divider>
 
-              <RouterLink to="/favorite">
+              <RouterLink to="/favorite" style="text-decoration:none ">
 
               <v-btn
                   depressed
@@ -64,22 +69,30 @@
 
 
               <v-divider class="my-3"></v-divider>
-              <v-btn
-                  depressed
-                  rounded
-                  text
-              >
-                LATEST PURCHASES
-              </v-btn>
+              <router-link to="latest-purchases" style="text-decoration:none ">
+
+                <v-btn
+                    depressed
+                    rounded
+                    text
+                >
+                  LATEST PURCHASES
+                </v-btn>
+
+              </router-link>
 
               <v-divider class="my-3"></v-divider>
-              <v-btn
-                  depressed
-                  rounded
-                  text
-              >
-                Payment information
-              </v-btn>
+
+              <router-link to="payment-information" style="text-decoration:none ">
+                <v-btn
+                    depressed
+                    rounded
+                    text
+                >
+                  Payment information
+                </v-btn>
+
+              </router-link>
 
 
               <v-divider class="my-3"></v-divider>
@@ -99,11 +112,8 @@
 </template>
 <script>
 export default {
-  name: "AvatarComponent"
-}
-</script>
-<script>
-export default {
+  name: "AvatarComponent",
+
   data: () => ({
     user: {
       initials: 'JD',

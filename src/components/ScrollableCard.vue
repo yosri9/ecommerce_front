@@ -18,7 +18,7 @@
     </v-tabs>
 </template>
 <script>
-import ProductCard from "@/components/ProductCard";
+import ProductCard from "@/components/Product/ProductCard";
 export default {
   name: "ScrollableCard",
   components: {ProductCard}
