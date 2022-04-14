@@ -101,13 +101,13 @@
                 </div>
               </router-link>
 
-              <div id="profile" class="profile" v-if="isLoggedIn" >
+              <div id="profile" class="profile" v-show="isLoggedIn" >
                 <AvatarComponent/>
 
 
               </div>
 
-              <router-link class="align-baseline" to="register" style="text-decoration:none" v-else>
+              <router-link class="align-baseline" to="register" style="text-decoration:none" v-show="!isLoggedIn">
 
                 <div style="text-align: -webkit-center">
 
@@ -165,6 +165,7 @@ import FooterComponent from "@/components/FooterComponent";
 import NewsLetter from "@/components/NewsLetter";
 import CenteredDivider from "@/components/CenteredDivider";
 import {useLoggedInStore} from "@/stores/LoggedInStore";
+import {storeToRefs} from "pinia";
 
 
 export default {
@@ -172,13 +173,14 @@ export default {
   setup() {
     const loggedInStore = useLoggedInStore()
 
-    const {isLoggedIn} = loggedInStore
+    const {isLoggedIn} = storeToRefs(loggedInStore)
 
     return {
       isLoggedIn,
     }
 
   },
+
 
 
   name: "App",
