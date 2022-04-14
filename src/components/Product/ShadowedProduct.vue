@@ -6,10 +6,10 @@
         <template v-slot:default="{ hover }">
           <v-card
               :elevation="hover ? 24 : 6"
-              class="mx-auto pa-6"
+              class="mx-auto "
           >
-            <v-img height="200" width="200"
-                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz6VomV5-9JmXSp14fnSBjtH9khjnHo3Jg5vwvBwA_Mx2KjYtnI34cM6PhXVs-hNIRVbE&usqp=CAU"/>
+            <v-img :height="height" :width="width"
+                   :src="src"/>
           </v-card>
         </template>
       </v-hover>
@@ -28,7 +28,8 @@ export default {
   components: {BaseProductCard},
   props: {
     height: String,
-    width:String
+    width:String,
+    src:String
   },
 }
 </script>

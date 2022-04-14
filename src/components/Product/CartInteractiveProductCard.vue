@@ -1,28 +1,43 @@
 <template>
 <BaseInteractiveProductCard :isCartDisabled = true>
+<template v-slot:X>
 
-  <v-btn
-      color="blue"
-      class="white--text"
-      fab
-      icon
-      small
-      @click="increment()"
-  >
-    <v-icon> mdi-plus</v-icon>
-  </v-btn>
-  <div>{{ count }}</div>
+  <div class=" ml-5 fa-pull-right"  >
+    <v-btn rounded small   @click="removeMessage(2)">
+      X
+    </v-btn>
 
-  <v-btn
-      color="blue"
-      class="white--text"
-      fab
-      icon
-      small
-      @click="decrement()"
-  >
-    <v-icon> mdi-minus</v-icon>
-  </v-btn>
+
+  </div>
+</template>
+
+
+  <template v-slot:card-actions>
+
+    <v-btn
+        color="blue"
+        class="white--text"
+        fab
+        icon
+        small
+        @click="increment()"
+    >
+      <v-icon> mdi-plus</v-icon>
+    </v-btn>
+    <div>{{ count }}</div>
+
+    <v-btn
+        color="blue"
+        class="white--text"
+        fab
+        icon
+        small
+        @click="decrement()"
+    >
+      <v-icon> mdi-minus</v-icon>
+    </v-btn>
+
+  </template>
 
 </BaseInteractiveProductCard>
 </template>

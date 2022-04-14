@@ -101,14 +101,39 @@
                 </div>
               </router-link>
 
-                <div id="profile" class="profile">
-                  <AvatarComponent/>
+              <div id="profile" class="profile" v-if="isLoggedIn" >
+                <AvatarComponent/>
 
+
+              </div>
+
+              <router-link class="align-baseline" to="register" style="text-decoration:none" v-else>
+
+                <div style="text-align: -webkit-center">
+
+
+                  <v-icon size="25px" color="#9B9BF8" class="cart-column mt-4">
+                    mdi-power
+
+                  </v-icon>
+
+                  <v-btn
+                      depressed
+                      rounded
+                      text
+                      color="grey"
+                      class="font-weight-bold pb-6"
+                  >
+                    Login
+                  </v-btn>
 
                 </div>
 
+              </router-link>
+
 
             </div>
+
 
           </v-btn-toggle>
 
@@ -116,6 +141,7 @@
 
 
       </v-toolbar>
+
 
       <v-main>
         <router-view/>
@@ -138,8 +164,23 @@ import AvatarComponent from "@/components/AvatarComponent";
 import FooterComponent from "@/components/FooterComponent";
 import NewsLetter from "@/components/NewsLetter";
 import CenteredDivider from "@/components/CenteredDivider";
+import {useLoggedInStore} from "@/stores/LoggedInStore";
+
 
 export default {
+
+  setup() {
+    const loggedInStore = useLoggedInStore()
+
+    const {isLoggedIn} = loggedInStore
+
+    return {
+      isLoggedIn,
+    }
+
+  },
+
+
   name: "App",
   components: {
     FooterComponent,

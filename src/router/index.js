@@ -7,6 +7,7 @@ import FavoriteView from "@/views/FavoriteView";
 import LatestPurchasesView from "@/views/LatestPurchasesView";
 import PaymentInformationView from "@/views/PaymentInformationView";
 import ProductView from "@/views/ProductView";
+import RegisterView from "@/views/authentication/RegisterView";
 
 Vue.use(VueRouter)
 
@@ -64,6 +65,13 @@ const routes = [
     path: '/product',
     name: 'product',
     component: ProductView
+
+  },
+
+  {
+    path: '/register',
+    name: 'register',
+    component: RegisterView
 
   }
 ]

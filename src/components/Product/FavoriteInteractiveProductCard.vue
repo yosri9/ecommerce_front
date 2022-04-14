@@ -1,5 +1,6 @@
 <template>
   <BaseInteractiveProductCart :isCartDisabled = false >
+
     <v-spacer/>
   </BaseInteractiveProductCart >
 
@@ -18,6 +19,7 @@ export default {
     show: true,
     count: 0,
     isFavorite: true,
+
 
 
     rightSocials: [
@@ -75,7 +77,9 @@ export default {
 
     addToFavorite() {
       this.isFavorite = true;
-    }
+    },
+
+
 
   },
 }

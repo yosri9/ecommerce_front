@@ -8,20 +8,29 @@
                 class="mx-auto ">
 
           <BaseProductCard>
+
             <v-img
                 :src="`https://picsum.photos/200/300?image=${getImage()}`"
                 height="200"
             >
+              <slot name="X"/>
+
+
+
               <span
                   class="text-h5 white--text pl-4 pt-4 d-inline-block"
                   v-text="card"
-              ></span>
+              >
+
+              </span>
 
 
             </v-img>
+
           </BaseProductCard>
 
           <v-card-actions class="white justify-center">
+
             <v-btn
                 :disabled=isCartDisabled
                 color="red lighten-3"
@@ -34,7 +43,7 @@
               <v-icon color='black'> mdi-cart-outline</v-icon>
             </v-btn>
 
-            <slot/>
+            <slot name="card-actions"/>
 
 
             <v-btn v-if="isFavorite"
@@ -53,6 +62,9 @@
                    small>
               <v-icon>mdi-cards-heart-outline</v-icon>
             </v-btn>
+
+
+
 
           </v-card-actions>
 
