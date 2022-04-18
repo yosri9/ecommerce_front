@@ -96,7 +96,7 @@
 
 
               <v-divider class="my-3"></v-divider>
-              <v-btn
+              <v-btn @click="logout()"
                   depressed
                   rounded
                   text
@@ -112,6 +112,7 @@
 </template>
 <script>
 import {useLoggedInStore} from "@/stores/LoggedInStore";
+import router from "@/router";
 
 export default {
   name: "AvatarComponent",
@@ -122,7 +123,7 @@ export default {
     const {isLoggedIn} = loggedInStore
 
     return {
-      isLoggedIn,
+      isLoggedIn, loggedInStore
     }
 
   },
@@ -135,7 +136,12 @@ export default {
     },
   }),
   methods:{
+    logout(){
+      this.loggedInStore.changeState()
 
+      localStorage.removeItem("token");
+      router.push("/")
+    }
 
   }
 }

@@ -1,11 +1,9 @@
 <template>
 
-  <v-row class="my-10">
-    <v-col cols="3">
-      <FilterComponent/>
-    </v-col>
+  <v-row class="my-10" style="place-content: center">
 
-    <v-col cols="8">
+
+    <v-col cols="10" >
 
       <v-row style="justify-content: space-evenly">
 
@@ -57,12 +55,11 @@
 </template>
 
 <script>
-import FilterComponent from "@/components/FilterComponent";
 import FavoriteInteractiveProductCard from "@/components/Product/FavoriteInteractiveProductCard";
 
 export default {
   name: "FavoriteView",
-  components: {FavoriteInteractiveProductCard,  FilterComponent,},
+  components: {FavoriteInteractiveProductCard,},
   data: () => ({
     show: true,
   }),

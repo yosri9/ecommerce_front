@@ -11,7 +11,7 @@
               </v-toolbar>
               <v-card-text>
                 <form ref="form" @submit.prevent="isRegister ? register() : login()">
-                  <v-text-field
+                  <v-text-field v-if="isRegister"
                       v-model="username"
                       name="username"
                       label="Username"
@@ -89,7 +89,6 @@ export default {
 
    const loggedInStore =  useLoggedInStore()
     const {isLoggedIn} = loggedInStore
-    loggedInStore
 
     return {
       isLoggedIn, loggedInStore

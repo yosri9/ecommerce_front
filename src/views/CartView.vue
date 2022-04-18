@@ -1,11 +1,9 @@
 <template>
 
-  <v-row class="my-10">
-    <v-col cols="3">
-      <FilterComponent/>
-    </v-col>
+  <v-row class="my-10" style="place-content: center">
 
-    <v-col cols="8">
+
+    <v-col cols="11" class="pl-16 ">
 
       <v-row style="justify-content: space-evenly">
 
@@ -33,7 +31,7 @@
 
 
       <v-sheet outlined class="ma-10 pa-16" v-if="show">
-        <v-row class=" d-inline-flex">
+        <v-row class=" d-inline-flex " style="place-content: center" >
 
 
           <div class="ma-5 " v-for="n in 10" v-bind:key="n">
@@ -57,12 +55,11 @@
 </template>
 
 <script>
-import FilterComponent from "@/components/FilterComponent";
 import InteractiveProductCard from "@/components/Product/CartInteractiveProductCard";
 
 export default {
   name: "CartView",
-  components: {InteractiveProductCard, FilterComponent,},
+  components: {InteractiveProductCard,},
   data: () => ({
     show: true,
   }),

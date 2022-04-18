@@ -11,10 +11,12 @@ import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 /* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-import router from './router'
 
 
+import router from "./router"
+import VueRouteMiddleware from 'vue-route-middleware';
 
+router.beforeEach(VueRouteMiddleware())
 
 /* add icons to the library */
 library.add(faUserSecret)
@@ -23,12 +25,19 @@ library.add(faUserSecret)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 
-import { createPinia, PiniaVuePlugin } from 'pinia'
+import {createPinia, PiniaVuePlugin} from 'pinia'
 
 Vue.use(PiniaVuePlugin)
 const pinia = createPinia()
 
 Vue.config.productionTip = false
+
+
+
+
+
+
+
 
 new Vue({
   vuetify,
