@@ -144,7 +144,8 @@ export default {
         if (response.status == 200) {
           this.errorMessage = ""
           this.loggedInStore.changeState()
-
+          localStorage.setItem("token",response.data["jwt"])
+          console.log(localStorage.getItem("token"))
           router.push('/')
           console.log(this.isLoggedIn)
 
@@ -184,6 +185,8 @@ export default {
               if (response.status == 200) {
                 this.errorMessage = ""
                 this.loggedInStore.changeState()
+                localStorage.setItem("token",response.data["jwt"])
+                console.log(response.data)
                 console.log(this.isLoggedIn)
                 router.push('/')
 

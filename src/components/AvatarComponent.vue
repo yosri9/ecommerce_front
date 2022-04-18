@@ -111,8 +111,21 @@
   </v-container>
 </template>
 <script>
+import {useLoggedInStore} from "@/stores/LoggedInStore";
+
 export default {
   name: "AvatarComponent",
+
+  setup() {
+    const loggedInStore = useLoggedInStore()
+
+    const {isLoggedIn} = loggedInStore
+
+    return {
+      isLoggedIn,
+    }
+
+  },
 
   data: () => ({
     user: {
@@ -121,6 +134,10 @@ export default {
       email: 'john.doe@doe.com',
     },
   }),
+  methods:{
+
+
+  }
 }
 </script>
 <style scoped>
