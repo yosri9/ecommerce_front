@@ -1,7 +1,9 @@
 import {Role} from "@/Model/role";
 import {Address} from "@/Model/address";
+import {Favorite} from "@/Model/favourite";
+import {Cart} from "@/Model/cart";
 
-export interface User {
+export interface User extends Model{
     id:         number;
     username:   string;
     email:      string;
@@ -9,10 +11,10 @@ export interface User {
     confirmed:  boolean;
     blocked:    null;
     role:       Role;
-    first_name: null;
-    last_name:  null;
-    cart:       number;
-    favorite:   number;
+    first_name: string;
+    last_name:  string;
+    cart:       Cart;
+    favorite:   Favorite;
     created_at: Date;
     updated_at: Date;
     addresses:  Address[];

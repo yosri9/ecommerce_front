@@ -1,4 +1,4 @@
-export interface CartItem {
+export interface CartItem extends Model{
     id:           number;
     quantity:     number;
     product:      number;

@@ -38,7 +38,6 @@ Vue.config.productionTip = false
 
 
 
-
 new Vue({
 // @ts-ignore
 

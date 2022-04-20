@@ -3,7 +3,7 @@ import {CartItem} from "@/Model/cart-item";
 import {Discount} from "@/Model/discount";
 import {Category} from "@/Model/category";
 
-export interface Product {
+export interface Product extends Model{
     id:           number;
     name:         string;
     quantity:     number;

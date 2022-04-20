@@ -1,5 +1,5 @@
 
-export interface Favorite {
+export interface Favorite extends Model{
     id:           number;
     user:         number;
     published_at: Date;

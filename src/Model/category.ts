@@ -1,4 +1,4 @@
-export interface Category {
+export interface Category extends Model{
     id:           number;
     name:         string;
     category?:     number;

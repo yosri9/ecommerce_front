@@ -1,6 +1,6 @@
 import {Product} from "@/Model/product";
 
-export interface Discount {
+export interface Discount extends Model{
     id:                           number;
     is_in_discount:               boolean;
     discount_percentage:          number;

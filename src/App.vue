@@ -168,7 +168,7 @@ import {useLoggedInStore} from "@/stores/LoggedInStore";
 import {storeToRefs} from "pinia";
 
 
-export default {
+export default  {
 
   setup() {
     const loggedInStore = useLoggedInStore()

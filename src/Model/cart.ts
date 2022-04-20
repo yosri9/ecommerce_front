@@ -2,7 +2,7 @@ import {User} from "@/Model/user";
 import {Order} from "@/Model/order";
 import {CartItem} from "@/Model/cart-item";
 
-export interface Cart {
+export interface Cart extends Model{
     id:           number;
     amount:       number;
     user:         User;
