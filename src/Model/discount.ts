@@ -1,3 +1,5 @@
+import {Product} from "@/Model/product";
+
 export interface Discount {
     id:                           number;
     is_in_discount:               boolean;

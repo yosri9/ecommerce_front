@@ -1,6 +1,7 @@
 import {Favorite} from "@/Model/favourite";
 import {CartItem} from "@/Model/cart-item";
 import {Discount} from "@/Model/discount";
+import {Category} from "@/Model/category";
 
 export interface Product {
     id:           number;
