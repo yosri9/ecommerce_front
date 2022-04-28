@@ -1,22 +1,23 @@
 import Service from "@/contracts/Service";
 import ApiRouter from "@/services/Api/api-router";
 import {Address} from "@/Model/address";
+import {User} from "@/Model/user";
 
-class AddressApi implements Service{
+class AddressApi extends Service{
 
-    create(address: Address, path = ApiRouter.ADDRESSES): any {
+    create(model: User, url: string): any {
     }
 
-    delete(id: number,path = ApiRouter.ADDRESSES): any {
+    delete(id: number,url = ApiRouter.ADDRESSES): any {
     }
 
-    find(path = ApiRouter.ADDRESSES): any {
+    find(url = ApiRouter.ADDRESSES): any {
     }
 
-    findOne(id: number, path = ApiRouter.ADDRESS(id)): any {
+    findOne(id: number, url = ApiRouter.ADDRESS(id)): any {
     }
 
-    update(address: Address, path = ApiRouter.ADDRESS(address.id)): any {
+    update(address: Address, url = ApiRouter.ADDRESS(address.id)): any {
     }
 
 

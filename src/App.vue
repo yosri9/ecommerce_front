@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app >
     <v-col cols="12" order-sm="4">
 
       <v-toolbar app color="black" light>
@@ -101,13 +101,13 @@
                 </div>
               </router-link>
 
-              <div id="profile" class="profile" v-show="isLoggedIn" >
+              <div id="profile" class="profile" v-show="auth" >
                 <AvatarComponent/>
 
 
               </div>
 
-              <router-link class="align-baseline" to="register" style="text-decoration:none" v-show="!isLoggedIn">
+              <router-link class="align-baseline" to="register" style="text-decoration:none" v-show="!auth">
 
                 <div style="text-align: -webkit-center">
 
@@ -158,25 +158,31 @@
 </template>
 
 <script>
+
+
+
+
 import HelloWorld from "./components/HelloWorld";
 import SearchComponent from "@/components/SearchComponent";
 import AvatarComponent from "@/components/AvatarComponent";
 import FooterComponent from "@/components/FooterComponent";
 import NewsLetter from "@/components/NewsLetter";
 import CenteredDivider from "@/components/CenteredDivider";
-import {useLoggedInStore} from "@/stores/LoggedInStore";
+import {useAuthStore} from "@/stores/AuthStore";
 import {storeToRefs} from "pinia";
 
 
 export default  {
 
-  setup() {
-    const loggedInStore = useLoggedInStore()
 
-    const {isLoggedIn} = storeToRefs(loggedInStore)
+
+  setup() {
+    const authStore = useAuthStore()
+
+    const {auth} = storeToRefs(authStore)
 
     return {
-      isLoggedIn,
+      auth,
     }
 
   },

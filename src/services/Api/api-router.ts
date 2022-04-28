@@ -6,12 +6,16 @@ export default class ApiRouter {
 
     static USERS = this.MAIN_API + "users/";
 
-    static USER(id: number) {
-        return this.ADDRESSES + id.toString()
+    static USER(id?: number ) {
+        return this.USERS + id?.toString()
     }
     static CURRENT_USER() {
-        return this.ADDRESSES + "/me"
+        return this.USERS + "me"
     }
+    static UPDATE_CURRENT_USER() {
+        return this.MAIN_API+"users-permissions/" + "users/me"
+    }
+
 
 
     // auth
@@ -22,31 +26,31 @@ export default class ApiRouter {
 
     static ADDRESSES = this.MAIN_API + "addresses/";
 
-    static ADDRESS(id: number) {
-        return this.ADDRESSES + id.toString()
+    static ADDRESS(id?: number) {
+        return this.ADDRESSES + id?.toString()
     }
     // roles
 
     static ROLES = this.MAIN_API + "users-permissions/roles/";
 
-    static ROLE(id: number) {
-        return this.ADDRESSES + id.toString()
+    static ROLE(id?: number) {
+        return this.ADDRESSES + id?.toString()
     }
 
     // cart
 
     static CARTS = this.MAIN_API + "carts/";
 
-    static CART(id: number) {
-        return this.CARTS + id.toString()
+    static CART(id?: number) {
+        return this.CARTS + id?.toString()
     }
 
     // category
 
     static CATEGORIES = this.MAIN_API + "categories/";
 
-    static CATEGORY(id: number) {
-        return this.CATEGORIES + id.toString()
+    static CATEGORY(id?: number) {
+        return this.CATEGORIES + id?.toString()
     }
 
 
@@ -54,8 +58,8 @@ export default class ApiRouter {
 
     static DISCOUNTS = this.MAIN_API + "discounts/";
 
-    static DISCOUNT(id: number) {
-        return this.DISCOUNTS + id.toString()
+    static DISCOUNT(id?: number) {
+        return this.DISCOUNTS + id?.toString()
     }
 
 
@@ -63,8 +67,8 @@ export default class ApiRouter {
 
     static FAVOURITES = this.MAIN_API + "favourites/";
 
-    static FAVOURITE(id: number) {
-        return this.FAVOURITES + id.toString()
+    static FAVOURITE(id?: number) {
+        return this.FAVOURITES + id?.toString()
     }
 
 
@@ -72,8 +76,8 @@ export default class ApiRouter {
 
     static ORDERS = this.MAIN_API + "favourites/";
 
-    static ORDER(id: number) {
-        return this.ORDERS + id.toString()
+    static ORDER(id?: number) {
+        return this.ORDERS + id?.toString()
     }
 
 
@@ -81,8 +85,8 @@ export default class ApiRouter {
 
     static PAYMENTS = this.MAIN_API + "favourites/";
 
-    static PAYMENT(id: number) {
-        return this.PAYMENTS + id.toString()
+    static PAYMENT(id?: number) {
+        return this.PAYMENTS + id?.toString()
     }
 
 
@@ -90,8 +94,8 @@ export default class ApiRouter {
 
     static PRODUCTS = this.MAIN_API + "favourites/";
 
-    static PRODUCT(id: number) {
-        return this.PRODUCTS + id.toString()
+    static PRODUCT(id?: number) {
+        return this.PRODUCTS + id?.toString()
     }
 
 
@@ -99,8 +103,8 @@ export default class ApiRouter {
 
     static CART_ITEMS = this.MAIN_API + "favourites/";
 
-    static CART_ITEM(id: number) {
-        return this.CART_ITEMS + id.toString()
+    static CART_ITEM(id?: number) {
+        return this.CART_ITEMS + id?.toString()
     }
 
 
@@ -108,7 +112,7 @@ export default class ApiRouter {
 
     static FILES = this.MAIN_API + "upload/files/"
 
-    static File(id: number) {
+    static File(id?: number) {
 
         return this.FILES + id
 

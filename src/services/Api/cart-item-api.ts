@@ -1,20 +1,21 @@
 import {CartItem} from "@/Model/cart-item";
 import Service from "@/contracts/Service";
 import ApiRouter from "@/services/Api/api-router";
-class CartItemApi implements Service{
-    create(cartItem: CartItem, path = ApiRouter.CART_ITEMS): any {
+import {User} from "@/Model/user";
+class CartItemApi extends Service{
+    create(model: User, url: string): any {
     }
 
-    delete(id: number,path = ApiRouter.CART_ITEMS): any {
+    delete(id: number,url = ApiRouter.CART_ITEMS): any {
     }
 
-    find(path = ApiRouter.CART_ITEMS): any {
+    find(url = ApiRouter.CART_ITEMS): any {
     }
 
-    findOne(id: number, path = ApiRouter.CART_ITEM(id)): any {
+    findOne(id: number, url = ApiRouter.CART_ITEM(id)): any {
     }
 
-    update(cartItem: CartItem, path = ApiRouter.CART_ITEM(cartItem.id)): any {
+    update(cartItem: CartItem, url = ApiRouter.CART_ITEM(cartItem.id)): any {
     }
 
 }

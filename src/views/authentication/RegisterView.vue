@@ -10,23 +10,32 @@
                 <v-toolbar-title>{{ isRegister ? stateObj.register.name : stateObj.login.name }}</v-toolbar-title>
               </v-toolbar>
               <v-card-text>
-                <form ref="form" @submit.prevent="isRegister ? register() : login()">
+                <form ref="form" @submit.prevent="isRegister ? authStore.register() : authStore.login()">
                   <v-text-field v-if="isRegister"
-                      v-model="username"
-                      name="username"
-                      label="Username"
-                      type="text"
-                      placeholder="username"
-                      required
+                                v-model="username"
+                                name="username"
+                                label="Username"
+                                type="text"
+                                placeholder="username"
+                                required
                   ></v-text-field>
 
-                  <v-text-field
+                  <v-text-field v-if="isRegister"
                       v-model="email"
                       name="email"
                       label="email"
                       type="email"
                       placeholder="email"
                       required
+                  ></v-text-field>
+
+                  <v-text-field v-if="!isRegister"
+                                v-model="identifier"
+                                name="identifier"
+                                label="email or username"
+                                type="text"
+                                placeholder="email or username"
+                                required
                   ></v-text-field>
 
                   <v-text-field
@@ -78,143 +87,51 @@
 
 <script>
 
-import axios from "axios";
-import router from "@/router";
-import {useLoggedInStore} from "@/stores/LoggedInStore";
+import {useAuthStore} from "@/stores/AuthStore";
+
+const {storeToRefs} = require("pinia");
 
 
 export default {
 
-  setup(){
+  setup() {
 
-   const loggedInStore =  useLoggedInStore()
-    const {isLoggedIn} = loggedInStore
+    const authStore = useAuthStore()
+    const {
+      auth, username,
+      email,
+      identifier,
+      password,
+      confirmPassword,
+      errorMessage,
+      isRegister,
+      validate,
+      stateObj,
+    } = storeToRefs(authStore)
 
     return {
-      isLoggedIn, loggedInStore
+      authStore, auth,
+      username,
+      email,
+      identifier,
+      password,
+      confirmPassword,
+      errorMessage,
+      isRegister,
+      validate,
+      stateObj,
     }
 
 
   },
-
 
 
   name: "RegisterView",
-  data() {
-    return {
-      username: "",
-      password: "",
-      confirmPassword: "",
-      email: "",
-      isRegister: false,
-      errorMessage: "",
-      validate: "",
-      stateObj: {
-        register: {
-          name: 'Register',
-          message: 'Aleady have an Acoount? login.'
-        },
-        login: {
-          name: 'Login',
-          message: 'Register'
-        }
-      }
-    };
-  },
 
 
-  methods: {
-    async login() {
-      const {username} = this;
-      console.log(username + "logged in")
-      await axios.post('http://localhost:1337/auth/local/', {
-            username: this.username,
-            identifier: this.email,
-            password: this.password,
-            confirmPassword: this.confirmPassword,
 
 
-          },
-      ).then(response => {
-        if (response.status == 400) {
-          this.errorMessage = "email or username already exists"
-        }
-
-        if (response.status == 200) {
-          this.errorMessage = ""
-          this.loggedInStore.changeState()
-          localStorage.setItem("token",response.data["jwt"])
-          console.log(localStorage.getItem("token"))
-          router.push('/')
-          console.log(this.isLoggedIn)
-
-        }
-
-
-      })
-          .catch(error => {
-            console.log('An error occurred:', error.response);
-            this.errorMessage = "Verify your credentials";
-          });
-
-
-    },
-    register() {
-      if (this.password == this.confirmPassword) {
-        this.isRegister = false;
-        this.errorMessage = "";
-        this.$refs.form.reset();
-
-
-        axios.post('http://localhost:1337/auth/local/register', {
-              username: this.username,
-              email: this.email,
-              password: this.password,
-              confirmPassword: this.confirmPassword,
-
-            },
-        )
-            .then((response) => {
-
-
-              if (response.status == 400) {
-                this.errorMessage = "email or username already exists"
-              }
-
-              if (response.status == 200) {
-                this.errorMessage = ""
-                this.loggedInStore.changeState()
-                localStorage.setItem("token",response.data["jwt"])
-                console.log(response.data)
-                console.log(this.isLoggedIn)
-                router.push('/')
-
-              }
-
-              // Handle success.
-              console.log("username: this.username,\n" +
-                  "              email: this.email,\n" +
-                  "              password: this.password,\n" +
-                  "              confirmPassword: this.confirmPassword");
-              console.log('Well done!');
-              console.log('User profile', response.data);
-
-              console.log('User profile', response.data.user);
-
-              console.log('User profile', response.data.user);
-              console.log('User token', response.data.jwt);
-            })
-            .catch((error) => {
-              // Handle error.
-              console.log('An error occurred:', error.response);
-
-
-            });
-      } else {
-        this.errorMessage = "password did not match"
-      }
-    }
-  },
+  methods: {},
   computed: {
     toggleMessage: function () {
       return this.isRegister ? this.stateObj.register.message : this.stateObj.login.message

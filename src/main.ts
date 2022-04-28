@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import vuetify from './plugins/vuetify'
+import 'nprogress/nprogress.css'
 
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -33,7 +34,14 @@ const pinia = createPinia()
 
 Vue.config.productionTip = false
 
+// @ts-ignore
+import vuetifyCountryRegionSelect from 'vuetify-country-region-select'
 
+Vue.use(vuetifyCountryRegionSelect)
+
+
+import VCountryRegionSelect from '@timbouc/vuetify-country-region-input'
+Vue.use(VCountryRegionSelect)
 
 
 

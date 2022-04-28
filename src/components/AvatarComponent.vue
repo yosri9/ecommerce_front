@@ -111,19 +111,19 @@
   </v-container>
 </template>
 <script>
-import {useLoggedInStore} from "@/stores/LoggedInStore";
+import {useAuthStore} from "@/stores/AuthStore";
 import router from "@/router";
 
 export default {
   name: "AvatarComponent",
 
   setup() {
-    const loggedInStore = useLoggedInStore()
+    const authStore = useAuthStore()
 
-    const {isLoggedIn} = loggedInStore
+    const {auth} = authStore
 
     return {
-      isLoggedIn, loggedInStore
+      auth, authStore
     }
 
   },
@@ -137,7 +137,7 @@ export default {
   }),
   methods:{
     logout(){
-      this.loggedInStore.changeState()
+      this.authStore.changeState()
 
       localStorage.removeItem("token");
       router.push("/")

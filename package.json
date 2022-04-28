@@ -15,11 +15,13 @@
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/vue-fontawesome": "^2.0.6",
     "@grafikri/vue-middleware": "^1.0.0",
+    "@timbouc/vuetify-country-region-input": "^0.1.3",
     "@types/faker": "^6.6.9",
     "@vue/composition-api": "^1.4.9",
     "bootstrap": "^5.1.3",
     "core-js": "^3.8.3",
     "faker": "^6.6.6",
+    "nprogress": "^0.2.0",
     "pinia": "^2.0.13",
     "uuid": "^8.3.2",
     "uuidv4": "^6.2.13",
@@ -29,7 +31,8 @@
     "vue-property-decorator": "^9.1.2",
     "vue-route-middleware": "^1.0.7",
     "vue-router": "^3.5.1",
-    "vuetify": "^2.6.0"
+    "vuetify": "^2.6.0",
+    "vuetify-country-region-select": "^0.1.7"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

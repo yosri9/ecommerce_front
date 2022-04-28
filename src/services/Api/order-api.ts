@@ -1,21 +1,22 @@
 import Service from "@/contracts/Service";
 import {Order} from "@/Model/order";
 import ApiRouter from "@/services/Api/api-router";
+import {User} from "@/Model/user";
 
-class OrderApi implements Service{
-    create(order: Order, path = ApiRouter.ORDERS): any {
+class OrderApi extends Service{
+    create(model: User, url: string): any {
     }
 
-    delete(id: number,path = ApiRouter.ORDERS): any {
+    delete(id: number,url = ApiRouter.ORDERS): any {
     }
 
-    find(path = ApiRouter.ORDERS): any {
+    find(url = ApiRouter.ORDERS): any {
     }
 
-    findOne(id: number, path = ApiRouter.ORDER(id)): any {
+    findOne(id: number, url = ApiRouter.ORDER(id)): any {
     }
 
-    update(order: Order, path = ApiRouter.ORDER(order.id)): any {
+    update(order: Order, url = ApiRouter.ORDER(order.id)): any {
     }
 
 
