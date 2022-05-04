@@ -65,12 +65,12 @@
 
           </v-row>
 
-          <v-rating style="padding-right: 90px"
+          <v-rating style="padding-right: 48px"
                     v-model="rating"
                     background-color="orange lighten-3"
                     color="orange"
                     large
-          ></v-rating>
+          />
 
 
         </v-row>

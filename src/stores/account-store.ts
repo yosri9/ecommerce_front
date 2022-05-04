@@ -2,12 +2,15 @@ import {defineStore} from 'pinia'
 import {User} from "../Model/user";
 import {UserApi} from "../services/Api/user-api";
 import ApiRouter from "@/services/Api/api-router";
+import {ImageApi} from "@/services/Api/image-api";
+
+import {useImageStore} from "@/stores/image-store"
+
 
 
 export const useAccountStore = defineStore('accountStore', {
     // arrow function recommended for full type inference
-    state:   () => {
-
+    state: () => {
 
 
         return {
@@ -19,6 +22,7 @@ export const useAccountStore = defineStore('accountStore', {
             username: "",
             email: null,
             gender: "male",
+            loading: false,
             phone_number: "",
             country: "",
             region: "",
@@ -27,28 +31,25 @@ export const useAccountStore = defineStore('accountStore', {
             provider: true,
             birthday_date: new Date(),
             date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
-
-
+            imageUrl: "",
 
 
         }
     },
 
 
-
-
-
     actions: {
         async updateAccount() {
-
+            this.loading = true
             const userApi = new UserApi()
             // @ts-ignore
-            const user = new User(this.first_name, this.last_name, this.country, this.region, this.gender, this.date)
+            const user = new User(this.first_name, this.last_name, this.country, this.region, this.gender, this.birthday_date, this.avatar_image_id)
             // @ts-ignore
-
 
 
             console.log(user)
+
+
 
             await userApi.update(user, ApiRouter.UPDATE_CURRENT_USER())
 
@@ -56,12 +57,33 @@ export const useAccountStore = defineStore('accountStore', {
             // const user2 = await userApi.find(ApiRouter.CURRENT_USER())
             // console.log(user2)
 
+            this.loading = false
 
         },
 
-        async fetchAccountData(){
+
+
+
+
+
+
+
+            async fetchAccountData() {
+            const imageStore = useImageStore()
+
+
             const userApi = new UserApi()
-            const user = await userApi.find(ApiRouter.CURRENT_USER())
+            const user = await userApi.getCurrentUser()
+                const imageUrl = await  imageStore.getImageUrl(user.avatar_image_id)
+
+
+
+
+
+
+
+                console.log(imageUrl)
+
             // @ts-ignore
             this.first_name = user.first_name
             // @ts-ignore
@@ -76,8 +98,11 @@ export const useAccountStore = defineStore('accountStore', {
             this.phone_number = user.phone_number
 
             // @ts-ignore
-            this.date = user.birthday_date
-            console.log(this.date)
+            this.date = user.birthday_date,
+                // @ts-ignore
+                this.avatar_image_id = user.avatar_image_id,
+                this.imageUrl = imageUrl
+                console.log(this.date)
 
         }
     }

@@ -12,6 +12,8 @@ import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 /* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
+import VAvatarUploader from 'vuetify-avatar-uploader'
+Vue.use(VAvatarUploader);
 
 
 import router from "./router"

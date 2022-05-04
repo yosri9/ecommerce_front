@@ -16,7 +16,7 @@ export const useAuthStore = defineStore('authStore', {
             // all these properties will have their type inferred automatically
             auth: auth,
             username: 'Eduardo',
-            email:"",
+            email:"xx",
             identifier:"flutter@gmail.com",
             password:"password",
             confirmPassword:"",

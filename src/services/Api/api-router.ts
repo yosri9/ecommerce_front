@@ -2,6 +2,7 @@ export default class ApiRouter {
     static MAIN_API = "http://localhost:1337/";
 
 
+
     // USERS
 
     static USERS = this.MAIN_API + "users/";
@@ -108,15 +109,18 @@ export default class ApiRouter {
     }
 
 
-    // FILE
+    // IMAGE
 
-    static FILES = this.MAIN_API + "upload/files/"
+    static IMAGES = this.MAIN_API + "upload/files/"
+    static IMAGE_UPLOAD = this.MAIN_API + "upload/"
 
-    static File(id?: number) {
+    static IMAGE(id?: number) {
 
-        return this.FILES + id
+        return this.IMAGES + id?.toString()
 
     }
+
+    static
 
 
 }

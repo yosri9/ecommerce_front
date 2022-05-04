@@ -162,7 +162,6 @@
 
 
 
-import HelloWorld from "./components/HelloWorld";
 import SearchComponent from "@/components/SearchComponent";
 import AvatarComponent from "@/components/AvatarComponent";
 import FooterComponent from "@/components/FooterComponent";
@@ -170,6 +169,7 @@ import NewsLetter from "@/components/NewsLetter";
 import CenteredDivider from "@/components/CenteredDivider";
 import {useAuthStore} from "@/stores/AuthStore";
 import {storeToRefs} from "pinia";
+import NProgress from "nprogress"
 
 
 export default  {
@@ -186,6 +186,25 @@ export default  {
     }
 
   },
+  async beforeRouteEnter(to, from, next) {
+    const {useAccountStore} = require("@/stores/account-store");
+    const accountStore = useAccountStore()
+
+
+
+    NProgress.start()
+
+    accountStore.fetchAccountData().then(() => {
+          NProgress.done()
+
+          next()
+
+
+        }
+    )
+
+
+  },
 
 
 
@@ -198,7 +217,7 @@ export default  {
     CenteredDivider,
 
     // eslint-disable-next-line vue/no-unused-components
-    HelloWorld,
+
   },
   data() {
     return {

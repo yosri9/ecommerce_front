@@ -66,8 +66,8 @@
 </template>
 
 <script>
-import FilterRangeSelect from "@/components/FilterRangeSelect";
-import FilterSelect from "@/components/FilterSelect";
+import FilterRangeSelect from "@/components/Filter/FilterRangeSelect";
+import FilterSelect from "@/components/Filter/FilterSelect";
 
 
 export default {

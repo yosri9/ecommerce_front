@@ -22,7 +22,7 @@
             >
 
 
-              <span class="white--text text-h5">{{ user.initials }}</span>
+              <span class="white--text text-h5">hh</span>
             </v-avatar>
           </v-btn>
           <h4 class="pr-5 ml-5 pb-10 text-center" style=" color: darkgray; margin-top: inherit;">Profile</h4>
@@ -34,11 +34,11 @@
               <v-avatar
                   color="brown"
               >
-                <span class="white--text text-h5">{{ user.initials }}</span>
+                <span class="white--text text-h5">{{  }}</span>
               </v-avatar>
-              <h3>{{ user.fullName }}</h3>
+              <h3>{{ first_name + " " + last_name }}</h3>
               <p class="text-caption mt-1">
-                {{ user.email }}
+                {{ email }}
               </p>
               <v-divider class="my-3"></v-divider>
 
@@ -112,29 +112,32 @@
 </template>
 <script>
 import {useAuthStore} from "@/stores/AuthStore";
+import {useAccountStore} from "@/stores/account-store";
 import router from "@/router";
+import {storeToRefs} from "pinia";
 
 export default {
   name: "AvatarComponent",
 
+
+
   setup() {
+
+
+
     const authStore = useAuthStore()
+    const accountStore = useAccountStore()
 
     const {auth} = authStore
+    const {email , first_name, last_name} = storeToRefs(accountStore)
 
     return {
-      auth, authStore
+      auth, authStore , email, first_name, last_name
     }
 
   },
 
-  data: () => ({
-    user: {
-      initials: 'JD',
-      fullName: 'John Doe',
-      email: 'john.doe@doe.com',
-    },
-  }),
+
   methods:{
     logout(){
       this.authStore.changeState()

@@ -15,7 +15,7 @@ import Model from "../../contracts/Model";
 
     }
 
-    async find(url= ApiRouter.USERS): Promise<User> {
+     async find(url= ApiRouter.USERS): Promise<User> {
       const user = await super.find(url) as User
 
 
@@ -28,6 +28,10 @@ import Model from "../../contracts/Model";
 
     }
 
+
+
+
+
     update(user: Model, url = ApiRouter.USER(user.id)): any {
 
 
@@ -36,7 +40,21 @@ import Model from "../../contracts/Model";
     }
 
 
+    async getCurrentUser() {
 
 
 
-}
+      const user = await this.find(ApiRouter.CURRENT_USER())
+
+      return user
+
+    }
+
+
+
+
+
+
+
+
+  }

@@ -6,11 +6,15 @@
       <v-col cols="2"/>
       <v-col cols="2">
         <v-row align="center" style="place-content: space-between;">
-          <v-avatar class="d-flex"
-                    color="warning lighten-2"
-                    size="56"
-          ></v-avatar>
-          <div class="font-weight-bold"> Sarra Marchel</div>
+          <!--          <input type="file" ref="file" style="display: none"  accept="image/*" id="upload" onchange="this.uploadImage()">-->
+
+
+          <ProfileImage :image-url="imageUrl"/>
+
+
+
+
+          <div class="font-weight-bold"> {{ this.first_name}} {{last_name}}</div>
         </v-row>
 
 
@@ -223,17 +227,14 @@
     <v-row id="update" class="justify-center">
 
       <v-btn
-          class="ma-2 center"
-
+          class="ma-2"
+          :loading="loading"
+          :disabled="loading"
           color="success"
-          @click=" accountStore.updateAccount()"
-
-
+          @click="loader = 'loading'"
       >
-        update
-
+        UPDATE
       </v-btn>
-
     </v-row>
 
 
@@ -245,23 +246,40 @@
 
 <script>
 
+import ProfileImage from "@/components/ProfileImage";
+
 const {useAccountStore} = require("@/stores/account-store");
+const {useImageStore} = require("@/stores/image-store")
 import {storeToRefs} from "pinia";
 import NProgress from "nprogress"
 
 export default {
-
-
+  components: {ProfileImage},
   setup() {
     const accountStore = useAccountStore()
-    const {first_name, last_name, gender, phone_number, country, region, birthday_date} = storeToRefs(accountStore)
+    const imageStore = useImageStore()
+
+
+    const {
+      first_name,
+      last_name,
+      gender,
+      phone_number,
+      country,
+      region,
+      birthday_date,
+      loading,
+      imageUrl,
+      image
+    } = storeToRefs(accountStore)
+
+    const { avatar_image_id } = imageStore
 
     return {
       accountStore,
-      first_name, last_name, gender, phone_number, country, region, birthday_date
+      first_name, last_name, gender, phone_number, country, region, birthday_date, loading, imageUrl, image, avatar_image_id
     }
   },
-
 
 
   async beforeRouteEnter(to, from, next) {
@@ -269,13 +287,12 @@ export default {
     const accountStore = useAccountStore()
 
 
-
     NProgress.start()
 
     accountStore.fetchAccountData().then(() => {
-      NProgress.done()
+          NProgress.done()
 
-      next()
+          next()
 
 
         }
@@ -285,7 +302,6 @@ export default {
   },
 
 
-
   data: vm => ({
     date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
     dateFormatted: vm.formatDate((new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)),
@@ -293,6 +309,7 @@ export default {
     menu2: false,
     name: "AccountView",
     items: ['male', 'female'],
+    loader: null,
     // eslint-disable-next-line no-undef,vue/no-dupe-keys
 
 
@@ -312,13 +329,45 @@ export default {
       val
       this.dateFormatted = this.formatDate(this.date)
     },
-    activeHamburger (newVal) {
-      if (newVal) document.documentElement.style.overflow = "hidden"
-      else document.documentElement.style.overflow = "auto"
-    }  },
+
+    loader() {
+      const accountStore = useAccountStore()
+      accountStore.updateAccount()
+      console.log(this.previews)
+
+
+      const l = this.loader
+      this[l] = !this[l]
+
+      setTimeout(() => (this[l] = false), 3000)
+
+      this.loader = null
+
+    },
+
+  },
 
   methods: {
 
+
+    onFileChange(item, e) {
+      var files = e.target.files || e.dataTransfer.files;
+      if (!files.length)
+        return;
+      this.createImage(item, files[0]);
+    },
+    createImage(item, file) {
+      this.image = new Image();
+      var reader = new FileReader();
+
+      reader.onload = (item, e) => {
+        item.image = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    },
+    removeImage: function (item) {
+      item.image = false;
+    },
 
 
     formatDate(date) {

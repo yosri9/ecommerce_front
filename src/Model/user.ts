@@ -15,12 +15,12 @@ export class User extends Model {
     phone_number?: number;
     cart?: Cart;
     favorite?: Favorite;
+    avatar_image_id?: string;
 
     provider?: string;
     confirmed?: boolean;
     blocked?: boolean;
     role?: Role;
-
 
 
     created_at?: Date;
@@ -32,7 +32,7 @@ export class User extends Model {
     declare id?: number;
 
 
-    constructor(first_name?: string, last_name?: string,  country?: string, region?: string, gender?: string,birthday_date?: Date ,phone_number?: number, cart?: Cart, favorite?: Favorite, provider?: string, confirmed?: boolean, blocked?: boolean, role?: Role, created_at?: Date, updated_at?: Date, addresses?: Address[],username?: string, email?: string, id?: number) {
+    constructor(first_name?: string, last_name?: string, country?: string, region?: string, gender?: string, birthday_date?: Date, avatar_image_id?: string, phone_number?: number,  cart?: Cart, favorite?: Favorite, provider?: string, confirmed?: boolean, blocked?: boolean, role?: Role, created_at?: Date, updated_at?: Date, addresses?: Address[], username?: string, email?: string, id?: number) {
         super();
         this.first_name = first_name;
         this.last_name = last_name;

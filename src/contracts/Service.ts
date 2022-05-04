@@ -11,11 +11,18 @@ export default abstract class Service {
         }
     };
 
-    create(model: User, url: string): any {
+    create(model: Model, url: string): any {
 
-        axios.post(url, model.toJson)
+
+        const token = localStorage.getItem("token");
+
+        const config = {
+            headers: {Authorization: `Bearer ${token}`}
+        };
+
+        axios.post<Model>(url,model, config, )
             .then(response => {
-                return response.data.object as Model
+                return response.data
             }, error => {
                 console.log(error);
             });
@@ -51,7 +58,7 @@ export default abstract class Service {
         };
         axios.get(url, config)
             .then(response => {
-                return response.data as Model[]
+                return response.data
             }, error => {
                 console.log(error);
             });
@@ -59,11 +66,14 @@ export default abstract class Service {
     }
 
     async update(model: Model, url: string): Promise<any> {
-        console.log(url)
-        console.log(model)
+        const token = localStorage.getItem("token");
+
+        const config = {
+            headers: {Authorization: `Bearer ${token}`}
+        };
 
 
-           await axios.put<Model>(url,model, this.config, )
+           await axios.put<Model>(url,model, config, )
                 .then(response => {
                     return response.data
                 }, error => {
