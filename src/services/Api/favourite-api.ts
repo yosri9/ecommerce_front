@@ -4,8 +4,10 @@ import ApiRouter from "@/services/Api/api-router";
 import {Favorite} from "@/Model/favourite";
 import {User} from "@/Model/user";
 
-class FavouriteApi extends Service{
-    create(model: User, url: string): any {
+export class FavouriteApi extends Service{
+    create(favourite?: Favorite, url=ApiRouter.FAVOURITES): any {
+        return super.create(favourite, url);
+
     }
 
     delete(id: number,url = ApiRouter.FAVOURITES): any {

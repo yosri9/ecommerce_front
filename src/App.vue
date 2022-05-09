@@ -167,7 +167,7 @@ import AvatarComponent from "@/components/AvatarComponent";
 import FooterComponent from "@/components/FooterComponent";
 import NewsLetter from "@/components/NewsLetter";
 import CenteredDivider from "@/components/CenteredDivider";
-import {useAuthStore} from "@/stores/AuthStore";
+import {useAuthStore} from "@/stores/auth-store";
 import {storeToRefs} from "pinia";
 import NProgress from "nprogress"
 
@@ -184,6 +184,29 @@ export default  {
     return {
       auth,
     }
+
+  },
+
+
+
+  name: "App",
+
+  components: {
+    FooterComponent,
+    AvatarComponent,
+    SearchComponent,
+    NewsLetter,
+    CenteredDivider,
+
+    // eslint-disable-next-line vue/no-unused-components
+
+  },
+
+  data() {
+    return {
+      //
+    };
+
 
   },
   async beforeRouteEnter(to, from, next) {
@@ -208,21 +231,5 @@ export default  {
 
 
 
-  name: "App",
-  components: {
-    FooterComponent,
-    AvatarComponent,
-    SearchComponent,
-    NewsLetter,
-    CenteredDivider,
-
-    // eslint-disable-next-line vue/no-unused-components
-
-  },
-  data() {
-    return {
-      //
-    };
-  }
 };
 </script>

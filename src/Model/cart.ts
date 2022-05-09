@@ -6,7 +6,7 @@ import Model from "@/contracts/Model";
 export class Cart extends Model{
     id?:           number;
     amount?:       number;
-    user?:         User;
+    user?:         number;
     published_at?: Date;
     created_at?:   Date;
     updated_at?:   Date;
@@ -14,7 +14,7 @@ export class Cart extends Model{
     cart_items?:   CartItem[];
 
 
-    constructor(id?: number, amount?: number, user?: User, published_at?: Date, created_at?: Date, updated_at?: Date, orders?: Order[], cart_items?: CartItem[]) {
+    constructor(id?: number, amount?: number, user?: number, published_at?: Date, created_at?: Date, updated_at?: Date, orders?: Order[], cart_items?: CartItem[]) {
         super();
         this.id = id;
         this.amount = amount;

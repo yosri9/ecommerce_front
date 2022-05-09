@@ -10,7 +10,7 @@
                 <v-toolbar-title>{{ isRegister ? stateObj.register.name : stateObj.login.name }}</v-toolbar-title>
               </v-toolbar>
               <v-card-text>
-                <form ref="form" @submit.prevent="isRegister ? authStore.register() : authStore.login()">
+                <form ref="form" @submit.prevent="isRegister ? authStore.register() : authStore.login() ">
                   <v-text-field v-if="isRegister"
                                 v-model="username"
                                 name="username"
@@ -87,7 +87,7 @@
 
 <script>
 
-import {useAuthStore} from "@/stores/AuthStore";
+import {useAuthStore} from "@/stores/auth-store";
 
 const {storeToRefs} = require("pinia");
 

@@ -22,7 +22,10 @@
             >
 
 
-              <span class="white--text text-h5">hh</span>
+
+              <img v-if="imageUrl != null" :src="imageUrl">
+
+
             </v-avatar>
           </v-btn>
           <h4 class="pr-5 ml-5 pb-10 text-center" style=" color: darkgray; margin-top: inherit;">Profile</h4>
@@ -34,7 +37,7 @@
               <v-avatar
                   color="brown"
               >
-                <span class="white--text text-h5">{{  }}</span>
+                <img v-if="imageUrl != null" :src="imageUrl">
               </v-avatar>
               <h3>{{ first_name + " " + last_name }}</h3>
               <p class="text-caption mt-1">
@@ -111,7 +114,7 @@
   </v-container>
 </template>
 <script>
-import {useAuthStore} from "@/stores/AuthStore";
+import {useAuthStore} from "@/stores/auth-store";
 import {useAccountStore} from "@/stores/account-store";
 import router from "@/router";
 import {storeToRefs} from "pinia";
@@ -129,10 +132,10 @@ export default {
     const accountStore = useAccountStore()
 
     const {auth} = authStore
-    const {email , first_name, last_name} = storeToRefs(accountStore)
+    const {email , first_name, last_name, imageUrl} = storeToRefs(accountStore)
 
     return {
-      auth, authStore , email, first_name, last_name
+      auth, authStore , email, first_name, last_name,imageUrl
     }
 
   },

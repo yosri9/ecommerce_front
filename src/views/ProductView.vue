@@ -27,19 +27,19 @@
       <v-col cols="6">
 
         <v-row class="align-baseline">
-          <v-row style="align-content: flex-start">
+          <v-row  id="compare-tool" style="align-content: flex-start">
             <v-icon color="blue">
               mdi-compare-horizontal
 
             </v-icon>
 
 
-            <div class="ml-8">
+            <div  class="ml-8">
               add to compare tool
             </div>
 
           </v-row>
-          <v-row class="pl-3 mb-5">
+          <v-row id="add-to-cart" class="pl-3 mb-5" @click="addToCart()">
             <v-icon color="blue">
               mdi-cart-plus
 

@@ -44,9 +44,77 @@ import CarouselHomePage from "@/components/CarouselHomePage";
 import CenteredDivider from "@/components/CenteredDivider";
 import ScrollableCard from "@/components/ScrollableCard";
 import ThreeProductShow from "@/components/ThreeProductShow";
+const {useAccountStore} = require("@/stores/account-store");
+const {useImageStore} = require("@/stores/image-store")
+const  {useAuthStore} = require("@/stores/auth-store")
 
+import {storeToRefs} from "pinia";
+import NProgress from "nprogress"
 
 export default {
+  setup() {
+    const accountStore = useAccountStore()
+    const imageStore = useImageStore()
+    const  authStore= useAuthStore()
+
+
+    const {
+      first_name,
+      last_name,
+      gender,
+      phone_number,
+      country,
+      region,
+      birthday_date,
+      loading,
+      imageUrl,
+      image
+    } = storeToRefs(accountStore)
+
+    const {auth} = storeToRefs(authStore)
+
+    const { avatar_image_id } = storeToRefs(imageStore)
+
+    return {
+      accountStore,
+      first_name, last_name, gender, phone_number, country, region, birthday_date, loading, imageUrl, image, avatar_image_id, auth
+    }
+  },
+
+  async beforeRouteEnter(to, from, next) {
+    const {useAccountStore} = require("@/stores/account-store");
+    const  {useAuthStore} = require("@/stores/auth-store")
+    const accountStore = useAccountStore()
+    const  authStore= useAuthStore()
+
+    console.log(authStore.auth)
+
+
+
+    if (authStore.auth){
+      NProgress.start()
+
+      accountStore.fetchAccountData().then(() => {
+            NProgress.done()
+
+
+
+          },
+
+
+
+      )
+
+    }
+
+    next()
+
+
+
+
+
+  },
+
 
   components: {
     ThreeProductShow,
@@ -57,6 +125,8 @@ export default {
     CarouselHomePage,
 
   },
+
+
 }
 </script>
 

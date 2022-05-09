@@ -11,21 +11,31 @@ export default abstract class Service {
         }
     };
 
-    create(model: Model, url: string): any {
+    create(model?: Model , url?: string): any {
+        console.log(model)
+        console.log(model)
 
 
         const token = localStorage.getItem("token");
 
         const config = {
-            headers: {Authorization: `Bearer ${token}`}
-        };
+            headers: {Authorization: `Bearer ${token}`, },
+        }
+        if (url != null) {
+            console.log("enter1")
+            console.log(JSON.stringify(model))
 
-        axios.post<Model>(url,model, config, )
-            .then(response => {
-                return response.data
-            }, error => {
-                console.log(error);
-            });
+            axios.post<Model>(url, model, config,)
+                .then(response => {
+                    console.log(response.data)
+                    return response.data
+                }, error => {
+                    console.log("enter2")
+                    console.log(error);
+                });
+        }
+        console.log("enter3")
+
     }
 
     find(url: string): any {

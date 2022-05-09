@@ -14,7 +14,7 @@ import PaymentInformationView from "@/views/PaymentInformationView";
 // @ts-ignore
 import ProductView from "@/views/ProductView";
 // @ts-ignore
-import RegisterView from "@/views/authentication/RegisterView";
+import RegisterView from "@/views/RegisterView.vue";
 import auth from "@/middlewares/AuthMiddleware";
 
 Vue.use(VueRouter)

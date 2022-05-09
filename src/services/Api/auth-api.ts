@@ -2,10 +2,10 @@ import axios from "axios";
 import ApiRouter from "@/services/Api/api-router";
 
 
-class AuthApi {
-    SignUp(username: string, email: string, password: string, confirmPassword: string) {
+export class AuthApi {
+    async SignUp(username: string, email: string, password: string, confirmPassword: string) {
 
-        axios.post(ApiRouter.SIGN_UP, {
+       return  await axios.post(ApiRouter.SIGN_UP, {
             username: username,
             email: email,
             password: password,
@@ -13,8 +13,8 @@ class AuthApi {
         })
     }
 
-    SignIN(identifier: string, password: string) {
-        axios.post(ApiRouter.SIGN_IN, {
+    async SignIN(identifier: string, password: string) {
+        return await axios.post(ApiRouter.SIGN_IN, {
             identifier: identifier,
             password: password,
         })

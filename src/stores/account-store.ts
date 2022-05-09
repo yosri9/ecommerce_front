@@ -20,7 +20,7 @@ export const useAccountStore = defineStore('accountStore', {
             first_name: "kaka",
             last_name: "",
             username: "",
-            email: null,
+            email: "flutter@gmail.com",
             gender: "male",
             loading: false,
             phone_number: "",
@@ -31,7 +31,7 @@ export const useAccountStore = defineStore('accountStore', {
             provider: true,
             birthday_date: new Date(),
             date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
-            imageUrl: "",
+            imageUrl: null,
 
 
         }
@@ -47,7 +47,6 @@ export const useAccountStore = defineStore('accountStore', {
             // @ts-ignore
 
 
-            console.log(user)
 
 
 
@@ -74,7 +73,12 @@ export const useAccountStore = defineStore('accountStore', {
 
             const userApi = new UserApi()
             const user = await userApi.getCurrentUser()
-                const imageUrl = await  imageStore.getImageUrl(user.avatar_image_id)
+                const  imageUrl = null
+                if (user.avatar_image_id != null){
+                    const imageUrl = await  imageStore.getImageUrl(user.avatar_image_id)
+                    this.imageUrl = imageUrl
+
+                }
 
 
 
@@ -82,7 +86,6 @@ export const useAccountStore = defineStore('accountStore', {
 
 
 
-                console.log(imageUrl)
 
             // @ts-ignore
             this.first_name = user.first_name
@@ -100,9 +103,7 @@ export const useAccountStore = defineStore('accountStore', {
             // @ts-ignore
             this.date = user.birthday_date,
                 // @ts-ignore
-                this.avatar_image_id = user.avatar_image_id,
-                this.imageUrl = imageUrl
-                console.log(this.date)
+                this.avatar_image_id = user.avatar_image_id
 
         }
     }

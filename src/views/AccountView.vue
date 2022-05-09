@@ -104,13 +104,9 @@
           sm="6"
           md="4"
       >
-        <v-text-field
-            outlined
-            dense
-            v-model="phone_number"
-        >
+        <vue-tel-input-vuetify defaultCountry="TN" outlined dense :disabledFetchingCountry = "true"   v-model="phone_number" />
 
-        </v-text-field>
+
       </v-col>
 
 
@@ -252,9 +248,13 @@ const {useAccountStore} = require("@/stores/account-store");
 const {useImageStore} = require("@/stores/image-store")
 import {storeToRefs} from "pinia";
 import NProgress from "nprogress"
+import VueTelInputVuetify from "vue-tel-input-vuetify/lib/vue-tel-input-vuetify.vue"
 
 export default {
-  components: {ProfileImage},
+
+
+  components: {ProfileImage,     VueTelInputVuetify,
+  },
   setup() {
     const accountStore = useAccountStore()
     const imageStore = useImageStore()

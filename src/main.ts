@@ -15,6 +15,12 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import VAvatarUploader from 'vuetify-avatar-uploader'
 Vue.use(VAvatarUploader);
 
+import VueTelInputVuetify from "vue-tel-input-vuetify";
+Vue.use(VueTelInputVuetify, {
+  vuetify,
+});
+
+
 
 import router from "./router"
 // @ts-ignore
