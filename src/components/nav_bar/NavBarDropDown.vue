@@ -36,7 +36,7 @@
                       open-delay="200"
                   >
                     <div :style=" hover ? 'text-decoration: underline;   text-decoration-color: gray;' : ''  ">
-                      <router-link to="/filter" style="text-decoration: none">
+                      <router-link to="/filter" style="text-decoration: none" @click.native="subCategory = subItem">
 
                       {{subItem}}
                       </router-link>
@@ -64,11 +64,25 @@
 </template>
 
 <script>
+
+
+const {useCategoryStore} = require("@/stores/category-stores");
+import {storeToRefs} from "pinia";
+
 export default {
+  setup() {
+    const categoryStore = useCategoryStore()
+    const {categoryName,subCategory }= storeToRefs(categoryStore)
+    return {categoryStore, categoryName, subCategory}
+  },
+
+
   name: "NavBarDropDown",
   props: {
     type: String
   },
+
+
   data() {
     return {
       items: [
@@ -134,6 +148,8 @@ export default {
 
 
   },
+
+
 
 
 }

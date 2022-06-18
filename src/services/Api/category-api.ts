@@ -28,6 +28,8 @@ export class CategoryApi extends Service{
 
 
             const category = new Category();
+            console.log("**************************")
+            console.log(name)
             category.name = name
             category.sub_category = subCategory
             const token = localStorage.getItem("token");

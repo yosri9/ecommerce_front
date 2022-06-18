@@ -17,20 +17,28 @@ export const useCategoryStore = defineStore('categoryStore', {
 
 
         return {
-            products:null
+            products:null,
+            categoryName:null,
+            subCategory:null
         }
     },
 
 
     actions: {
 
-         async fetchProductByCategoryName(name? : string, subCategory?: string) {
+         async fetchProductByCategoryName() {
+             function delay(time) {
+                 return new Promise(resolve => setTimeout(resolve, time));
+             }
+             await delay(100)
              const productIdList: string[] = []
              const productList: Product[] = []
 
              const categoryApi = new CategoryApi()
              const productApi = new ProductApi()
-             const categories = await  categoryApi.findByName("color", "black")
+             console.log(this.categoryName)
+             // @ts-ignore
+             const categories = await  categoryApi.findByName(this.categoryName,this.subCategory)
 
 
              for (const i in categories) {
@@ -59,8 +67,11 @@ export const useCategoryStore = defineStore('categoryStore', {
              return productList
 
 
-         }
-        },
+         },
+
+
+         },
+
 
 
 
