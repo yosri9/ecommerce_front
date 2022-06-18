@@ -10,7 +10,7 @@
           <BaseProductCard>
 
             <v-img
-                :src="`https://picsum.photos/200/300?image=${getImage()}`"
+                :src=product.image_url
                 height="200"
             >
               <slot name="X"/>
@@ -79,6 +79,7 @@
 
 <script>
 import BaseProductCard from "@/components/Product/BaseProductCard";
+import {Product} from "@/Model/product";
 
 export default {
   name: "BaseInteractiveProductCard",
@@ -120,6 +121,7 @@ export default {
   }),
   props: {
     isCartDisabled: Boolean,
+    product: Product
 
 
   },
@@ -160,3 +162,5 @@ export default {
 <style scoped>
 
 </style>
+
+<!--`https://picsum.photos/200/300?image=${getImage()}`-->

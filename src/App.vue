@@ -41,45 +41,32 @@
             <v-btn value="left" class="white--text"
             >
 
-              <router-link style="color: white;   text-decoration: none;
-                  " to="About">
 
-                Gender
 
-              </router-link>
+
+            <NavBarDropDown type="Men"/>
+
             </v-btn>
 
             <v-btn value="center" class="white--text"
             >
-              <router-link style="color: white;   text-decoration: none;
-                  " to="About">
+              <NavBarDropDown type="Women"/>
 
-
-                Mark
-
-              </router-link>
             </v-btn>
 
             <v-btn value="right" class="white--text"
             >
+              <NavBarDropDown type="Brands"/>
 
-              <router-link style="color: white;   text-decoration: none;
-                  " to="">
 
-                Promotions
-
-              </router-link>
             </v-btn>
 
 
             <v-btn value="justify" class="white--text"
             >
 
-              <router-link style="color: white;   text-decoration: none;
-                  " to="About">
+              <NavBarDropDown type="promotion"/>
 
-                About
-              </router-link>
 
 
             </v-btn>
@@ -170,6 +157,7 @@ import CenteredDivider from "@/components/CenteredDivider";
 import {useAuthStore} from "@/stores/auth-store";
 import {storeToRefs} from "pinia";
 import NProgress from "nprogress"
+import NavBarDropDown from "@/components/nav_bar/NavBarDropDown";
 
 
 export default  {
@@ -192,6 +180,7 @@ export default  {
   name: "App",
 
   components: {
+    NavBarDropDown,
     FooterComponent,
     AvatarComponent,
     SearchComponent,
@@ -204,7 +193,7 @@ export default  {
 
   data() {
     return {
-      //
+
     };
 
 

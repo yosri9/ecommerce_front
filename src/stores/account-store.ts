@@ -68,42 +68,37 @@ export const useAccountStore = defineStore('accountStore', {
 
 
             async fetchAccountData() {
-            const imageStore = useImageStore()
+                const imageStore = useImageStore()
 
 
-            const userApi = new UserApi()
-            const user = await userApi.getCurrentUser()
-                const  imageUrl = null
-                if (user.avatar_image_id != null){
-                    const imageUrl = await  imageStore.getImageUrl(user.avatar_image_id)
-                    this.imageUrl = imageUrl
+                const userApi = new UserApi()
+                const user = await userApi.getCurrentUser()
+                    const  imageUrl = null
+                    if (user.avatar_image_id != null){
+                        const imageUrl = await  imageStore.getImageUrl(user.avatar_image_id)
+                        this.imageUrl = imageUrl
 
-                }
-
-
-
+                    }
 
 
 
-
-
-            // @ts-ignore
-            this.first_name = user.first_name
-            // @ts-ignore
-            this.last_name = user.last_name
-            // @ts-ignore
-            this.country = user.country
-            // @ts-ignore
-            this.region = user.region
-            // @ts-ignore
-            this.birthday_date = user.birthday_date
-            // @ts-ignore
-            this.phone_number = user.phone_number
-
-            // @ts-ignore
-            this.date = user.birthday_date,
                 // @ts-ignore
-                this.avatar_image_id = user.avatar_image_id
+                this.first_name = user.first_name
+                // @ts-ignore
+                this.last_name = user.last_name
+                // @ts-ignore
+                this.country = user.country
+                // @ts-ignore
+                this.region = user.region
+                // @ts-ignore
+                this.birthday_date = user.birthday_date
+                // @ts-ignore
+                this.phone_number = user.phone_number
+
+                // @ts-ignore
+                this.date = user.birthday_date,
+                    // @ts-ignore
+                    this.avatar_image_id = user.avatar_image_id
 
         }
     }

@@ -15,9 +15,11 @@ export class Product extends Model{
     cart_items?:   CartItem[];
     categories?:   Category[];
     favorites?:    Favorite[];
+    image_url?:    string;
 
 
-    constructor(id: number, name: string, quantity: number, discount: Discount, published_at: Date, created_at: Date, updated_at: Date, cart_items: CartItem[], categories: Category[], favorites: Favorite[]) {
+
+    constructor(id: number, name: string, quantity: number, discount: Discount, published_at: Date, created_at: Date, updated_at: Date, cart_items: CartItem[], categories: Category[], favorites: Favorite[], image_url?:string) {
         super();
         this.id = id;
         this.name = name;
@@ -29,5 +31,6 @@ export class Product extends Model{
         this.cart_items = cart_items;
         this.categories = categories;
         this.favorites = favorites;
+        this.image_url = image_url;
     }
 }

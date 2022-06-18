@@ -3,7 +3,7 @@ import {Product} from "@/Model/product";
 import ApiRouter from "@/services/Api/api-router";
 import {User} from "@/Model/user";
 
-class ProductApi extends Service{
+export class ProductApi extends Service{
     create(model: User, url: string): any {
     }
 
@@ -13,7 +13,9 @@ class ProductApi extends Service{
     find(url = ApiRouter.PRODUCTS): any {
     }
 
-    findOne(id: number, url = ApiRouter.PRODUCT(id)): any {
+    async findOne(id: number, url = ApiRouter.PRODUCT(id)): Promise<any> {
+        return await super.findOne(id, url);
+
     }
 
     update(product: Product, url = ApiRouter.PRODUCT(product.id)): any {

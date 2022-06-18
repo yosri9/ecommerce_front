@@ -60,18 +60,15 @@ export default abstract class Service {
 
     }
 
-    findOne(id: number, url: string): any {
+    async findOne(id: number, url: string): Promise<any> {
         const token = localStorage.getItem("token");
 
         const config = {
             headers: {Authorization: `Bearer ${token}`}
         };
-        axios.get(url, config)
-            .then(response => {
-                return response.data
-            }, error => {
-                console.log(error);
-            });
+        const response = await axios.get(url, config)
+        return response.data
+
 
     }
 

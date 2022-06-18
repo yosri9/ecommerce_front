@@ -23,8 +23,8 @@ import Model from "../../contracts/Model";
 
     }
 
-    findOne(id: number, url = ApiRouter.USER(id)): void {
-      return super.findOne(id, url);
+    async findOne(id: number, url = ApiRouter.USER(id)): Promise<any> {
+      return await super.findOne(id, url);
 
     }
 

@@ -53,6 +53,9 @@ export default class ApiRouter {
     static CATEGORY(id?: number) {
         return this.CATEGORIES + id?.toString()
     }
+    static CATEGORY_BY_NAME() {
+        return this.CATEGORIES + 'name'
+    }
 
 
 // discount
@@ -75,7 +78,7 @@ export default class ApiRouter {
 
     // order
 
-    static ORDERS = this.MAIN_API + "favourites/";
+    static ORDERS = this.MAIN_API + "orders/";
 
     static ORDER(id?: number) {
         return this.ORDERS + id?.toString()
@@ -84,7 +87,7 @@ export default class ApiRouter {
 
     // PAYMENT
 
-    static PAYMENTS = this.MAIN_API + "favourites/";
+    static PAYMENTS = this.MAIN_API + "payments/";
 
     static PAYMENT(id?: number) {
         return this.PAYMENTS + id?.toString()
@@ -93,7 +96,7 @@ export default class ApiRouter {
 
     // PRODUCT
 
-    static PRODUCTS = this.MAIN_API + "favourites/";
+    static PRODUCTS = this.MAIN_API + "products/";
 
     static PRODUCT(id?: number) {
         return this.PRODUCTS + id?.toString()
@@ -102,7 +105,7 @@ export default class ApiRouter {
 
     // CART_ITEM
 
-    static CART_ITEMS = this.MAIN_API + "favourites/";
+    static CART_ITEMS = this.MAIN_API + "cartItems/";
 
     static CART_ITEM(id?: number) {
         return this.CART_ITEMS + id?.toString()

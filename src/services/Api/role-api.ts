@@ -13,7 +13,7 @@ class RoleApi extends Service{
     find(url= ApiRouter.ROLES): any {
     }
 
-    findOne(id: number, url = ApiRouter.ROLE(id)): void {
+    async findOne(id: number, url = ApiRouter.ROLE(id)): Promise<any> {
     }
 
     update(role: Role, url = ApiRouter.ROLE(role.id)): any {

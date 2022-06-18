@@ -36,7 +36,7 @@ export const useImageStore = defineStore('imageStore', {
             user.avatar_image_id = data[0].id
             console.log(user)
 
-            await userApi.update(user)
+            await userApi.update(user, ApiRouter.UPDATE_CURRENT_USER())
 
 
 

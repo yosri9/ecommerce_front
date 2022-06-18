@@ -1,14 +1,15 @@
-<template>
-  <BaseInteractiveProductCart :isCartDisabled = false >
+<template >
+  <BaseInteractiveProductCart :isCartDisabled = false :product =product>
 
     <v-spacer/>
-  </BaseInteractiveProductCart >
+  </BaseInteractiveProductCart>
 
 
 </template>
 
 <script>
 import BaseInteractiveProductCart from "@/components/Product/BaseInteractiveProductCard";
+import {Product} from "@/Model/product";
 
 export default {
   name: "FavoriteInteractiveProductCard",
@@ -49,6 +50,9 @@ export default {
       },
     ]
   }),
+  props:{
+     product: Product
+  },
 
 
   methods: {

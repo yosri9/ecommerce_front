@@ -14,6 +14,9 @@ import PaymentInformationView from "@/views/PaymentInformationView";
 // @ts-ignore
 import ProductView from "@/views/ProductView";
 // @ts-ignore
+import FilterView from "@/views/FilterView";
+// @ts-ignore
+
 import RegisterView from "@/views/RegisterView.vue";
 import auth from "@/middlewares/AuthMiddleware";
 
@@ -93,6 +96,12 @@ const routes = [
         path: '/register',
         name: 'register',
         component: RegisterView
+
+    },
+    {
+        path: '/filter',
+        name: 'filter',
+        component: FilterView
 
     }
 ]
