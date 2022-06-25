@@ -13,7 +13,8 @@ export class CartApi extends Service{
     find(url = ApiRouter.CARTS): any {
     }
 
-    findOne(id: number, url = ApiRouter.CART(id)): any {
+    async findOne(id: number, url = ApiRouter.CART(id)): Promise<any> {
+        return await super.findOne(id, url)
     }
 
     update(cart: Cart, url = ApiRouter.CART(cart.id)): any {

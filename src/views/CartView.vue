@@ -34,9 +34,9 @@
         <v-row class=" d-inline-flex " style="place-content: center" >
 
 
-          <div class="ma-5 " v-for="n in 10" v-bind:key="n">
+          <div class="ma-5 " v-for="(cartItem,i) in (cart.cart_items,products)" v-bind:key="cartItem">
 
-            <InteractiveProductCard/>
+            <CartInteractiveProductCard :product="products[i]" :cartItem="cart.cart_items[i]" :isCartDisabled="false" />
 
 
           </div>
@@ -55,11 +55,22 @@
 </template>
 
 <script>
-import InteractiveProductCard from "@/components/Product/CartInteractiveProductCard";
+import CartInteractiveProductCard from "@/components/Product/CartInteractiveProductCard";
+import {useCartStore} from "@/stores/cart-store";
 
+import {storeToRefs} from "pinia";
 export default {
+  setup() {
+    const cartStore = useCartStore()
+
+    const {cart, products}=storeToRefs(cartStore)
+
+
+    return {cart,cartStore, products}
+  },
+
   name: "CartView",
-  components: {InteractiveProductCard,},
+  components: {CartInteractiveProductCard,},
   data: () => ({
     show: true,
   }),
@@ -69,6 +80,11 @@ export default {
       setTimeout(() => this.show = false, seconds * 1000);
 
 
+    },
+    async product(){
+    const  product = await this.cartStore.fetchProduct(this.cartItem.product)
+      console.log(product)
+      return product
     }
 
   }

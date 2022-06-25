@@ -4,18 +4,19 @@ import {User} from "@/Model/user";
 import ApiRouter from "@/services/Api/api-router";
 import {useImageStore} from "@/stores/image-store";
 import {Product} from "@/Model/product";
+import {ProductApi} from "@/services/Api/product-api";
 
 export const useProductStore = defineStore('productStore', {
     // arrow function recommended for full type inference
     state: () => {
 
-
         return {
 
 
             // all these properties will have their type inferred automatically
-            product_name: "kaka",
-            imageUrl: null,
+            storedProduct: null,
+            id:0
+
 
 
         }
@@ -28,7 +29,16 @@ export const useProductStore = defineStore('productStore', {
 
 
 
+        },
+
+        async fetchProduct(id) {
+            const productApi = new ProductApi()
+            const product = await productApi.findOne(id) as Product
+            return product
+
         }
+
+
 
 
 

@@ -45,6 +45,7 @@ import CenteredDivider from "@/components/CenteredDivider";
 import ScrollableCard from "@/components/ScrollableCard";
 import ThreeProductShow from "@/components/ThreeProductShow";
 const {useAccountStore} = require("@/stores/account-store");
+const {useCartStore} = require("@/stores/cart-store");
 const {useImageStore} = require("@/stores/image-store")
 const  {useAuthStore} = require("@/stores/auth-store")
 
@@ -86,6 +87,7 @@ export default {
     const  {useAuthStore} = require("@/stores/auth-store")
     const accountStore = useAccountStore()
     const  authStore= useAuthStore()
+    const  cartStore = useCartStore()
 
     console.log(authStore.auth)
 
@@ -95,7 +97,12 @@ export default {
       NProgress.start()
 
       accountStore.fetchAccountData().then(() => {
-            NProgress.done()
+
+        cartStore.fetchCart().then(() => {
+          NProgress.done()
+
+        })
+
 
 
 
@@ -106,6 +113,7 @@ export default {
       )
 
     }
+
 
     next()
 

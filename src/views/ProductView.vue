@@ -6,7 +6,7 @@
       <v-col cols="5">
 
         <v-img style="border: groove ;align-self: self-end;"
-               src="https://www.ubuy.tn/productimg/?image=aHR0cHM6Ly9pbWFnZXMtbmEuc3NsLWltYWdlcy1hbWF6b24uY29tL2ltYWdlcy9JLzcxSWw2VzFrNXFMLl9TUzQwMF8uanBn.jpg"
+               :src= storedProduct.image_url
                width="400" height="400"
         >
           <HeartIcon class="fa-pull-right" style="padding-top: 90%"/>
@@ -18,6 +18,8 @@
           <v-tabs style="padding-left: 15%;">
             <v-tab @click="$vuetify.goTo('#photos')">Photos</v-tab>
             <v-tab @click="$vuetify.goTo('#product-description')">Description</v-tab>
+            <v-tab @click="$vuetify.goTo('#product-category')">Features</v-tab>
+
           </v-tabs>
         </template>
 
@@ -35,20 +37,38 @@
 
 
             <div  class="ml-8">
-              add to compare tool
+              Add to compare tool
             </div>
 
           </v-row>
-          <v-row id="add-to-cart" class="pl-3 mb-5" @click="addToCart()">
-            <v-icon color="blue">
-              mdi-cart-plus
 
-            </v-icon>
 
-            <div class="ml-8">
-              Add to cart
-            </div>
+
+          <v-row justify="center">
+            <v-dialog
+                v-model="dialogStore"
+                persistent
+                max-width="290"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-row id="add-to-cart" class="pl-3 mb-5" v-bind="attrs" v-on="on">
+                  <v-icon color="blue">
+                    mdi-cart-plus
+
+                  </v-icon>
+
+                  <div class="ml-8">
+                    Add to cart
+                  </div>
+                </v-row>
+
+              </template>
+              <InteractiveAddProductToCart :is-cart-disabled="true"    :product="storedProduct"  />
+            </v-dialog>
           </v-row>
+
+
+
         </v-row>
 
         <v-row class="align-baseline">
@@ -79,9 +99,35 @@
         <v-row class="align-baseline">
 
 
-          <v-row style="color: red" class="font-weight-bold">
+          <v-row style="color: red" class="font-weight-bold" >
             Product is not in stock
+
           </v-row>
+
+
+
+
+
+          <div class="text-center">
+
+            <v-snackbar
+                v-model="snackbarStore"
+                :multi-line="multiLine"
+            >
+              {{ text }}
+
+              <template v-slot:action="{ attrs }">
+                <v-btn
+                    color="red"
+                    text
+                    v-bind="attrs"
+                    @click="snackbarStore = false"
+                >
+                  Close
+                </v-btn>
+              </template>
+            </v-snackbar>
+          </div>
 
           <v-row align-self="start" class="pr-14">
             <v-icon color="yellow">
@@ -94,8 +140,31 @@
         </v-row>
 
         <v-row style="height: 30px"/>
-        <v-row class="text-decoration-underline pr-15">
-          Notify me when it is available
+        <v-row class=" pr-15" @click="getNotifiedSnackbar = true">
+          <v-btn>
+            Notify me when it is available
+          </v-btn>
+
+          <div class="text-center">
+
+            <v-snackbar
+                v-model="getNotifiedSnackbar"
+                :multi-line="multiLine"
+            >
+              You will receive an email soon
+
+              <template v-slot:action="{ attrs }">
+                <v-btn
+                    color="red"
+                    text
+                    v-bind="attrs"
+                    @click="getNotifiedSnackbar = false"
+                >
+                  Close
+                </v-btn>
+              </template>
+            </v-snackbar>
+          </div>
         </v-row>
 
 
@@ -123,9 +192,49 @@
           Product Description
         </h3>
 
-        <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam commodi dicta dolore dolores eligendi eos ex incidunt, iste, molestias nemo nesciunt nulla officia perferendis perspiciatis, quaerat quas rerum tempora vel.</h5>
+        <div   v-for="description in storedProduct.descriptions" v-bind:key="description">
+          <div >
+            <h5>
+              {{description.title}} :
+            </h5>
+              <div class="align-self-center font-weight-light">
+                {{description.description_details}}
 
+
+              </div>
+
+          </div>
+
+          <br/>
+
+
+        </div>
       </div>
+
+      <div id="product-category" class="pl-16 pt-16">
+        <h3 class="pb-5">
+          Product Features
+        </h3>
+
+        <div   v-for="category in storedProduct.categories" v-bind:key="category">
+          <div >
+            <h5>
+              {{category.name}} :
+            </h5>
+            <div class="align-self-center font-weight-light">
+              {{category.sub_category}}
+
+
+            </div>
+
+          </div>
+
+          <br/>
+
+
+        </div>
+      </div>
+
 
     </v-col>
 
@@ -144,15 +253,64 @@
 </template>
 
 <script>
+
 import HeartIcon from "@/icons/HeartIcon";
 import CenteredDivider from "@/components/CenteredDivider";
 import ScrollableCard from "@/components/ScrollableCard";
+import {useProductStore} from "@/stores/product-store";
+import {useCartStore} from "@/stores/cart-store";
+
+import {storeToRefs} from "pinia";
+import InteractiveAddProductToCart from "@/components/Product/InteractiveAddProductToCart";
+// import NProgress from "nprogress"
 
 export default {
+
+
+
+  setup() {
+    const productStore = useProductStore()
+    const cartStore = useCartStore()
+
+    const {storedProduct}= storeToRefs(productStore)
+    const {dialogStore, snackbarStore}=storeToRefs(cartStore)
+
+
+    return {storedProduct, dialogStore, snackbarStore}
+  },
+  data: () => ({
+    multiLine: true,
+    getNotifiedSnackbar: false,
+    text: `Added to cart.`,
+  }),
+  // async beforeRouteEnter(to, from, next) {
+  //
+  //   const {useProductStore} = require("@/stores/product-store");
+  //   const productStore = useProductStore()
+  //
+  //
+  //   NProgress.start()
+  //
+  //   productStore.fetchProductData().then(() => {
+  //         NProgress.done()
+  //
+  //         next()
+  //
+  //
+  //       }
+  //   )
+  //
+  //
+  // },
+
   name: "ProductView",
-  components: {ScrollableCard,  CenteredDivider, HeartIcon}
+  components: {InteractiveAddProductToCart, ScrollableCard,  CenteredDivider, HeartIcon},
 }
+
+
 </script>
+
+
 
 <style scoped>
 

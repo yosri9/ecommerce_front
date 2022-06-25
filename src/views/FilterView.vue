@@ -37,7 +37,7 @@
 
 
           <div class="ma-5 " v-for="product in products" v-bind:key="product">
-            <FavoriteInteractiveProductCard :product="product" />
+            <FavoriteInteractiveProductCard :product="product" :isCartDisabled="true" />
 
 
           </div>

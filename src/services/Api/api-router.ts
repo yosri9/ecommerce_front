@@ -105,7 +105,7 @@ export default class ApiRouter {
 
     // CART_ITEM
 
-    static CART_ITEMS = this.MAIN_API + "cartItems/";
+    static CART_ITEMS = this.MAIN_API + "cart-items/";
 
     static CART_ITEM(id?: number) {
         return this.CART_ITEMS + id?.toString()

@@ -67,6 +67,7 @@ export default abstract class Service {
             headers: {Authorization: `Bearer ${token}`}
         };
         const response = await axios.get(url, config)
+        console.log(response.data)
         return response.data
 
 
@@ -93,6 +94,7 @@ export default abstract class Service {
     delete(id: number, url: string): any {
         axios.delete(url)
             .then(response => {
+                console.log("hello")
                 return response.data as Model
             }, error => {
                 console.log(error);

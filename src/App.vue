@@ -12,7 +12,7 @@
               <div id="logo-name" class="logo-name align-content-center my-8 mx-8"
                    style="display: inline-flex;size: 20px">
 
-                <h1 style="color: white">Cactus</h1>
+                <h1 style="color: white">Talan</h1>
                 <h1 style="color: #0F0FD2">Sport</h1>
 
 

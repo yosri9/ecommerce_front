@@ -7,6 +7,7 @@ import {Favorite} from "@/Model/favourite";
 import {FavouriteApi} from "@/services/Api/favourite-api";
 import {Cart} from "@/Model/cart";
 import {User} from "@/Model/user";
+import {useCartStore} from "@/stores/cart-store";
 
 export const useAuthStore = defineStore('authStore', {
     // arrow function recommended for full type inference
@@ -54,6 +55,8 @@ export const useAuthStore = defineStore('authStore', {
 
         async login() {
             const authApi = new AuthApi()
+
+
 
             await authApi.SignIN(this.identifier, this.password).then(response => {
                 if (response.status == 400) {
@@ -111,11 +114,13 @@ export const useAuthStore = defineStore('authStore', {
 
                         const cartApi = new CartApi()
                         const cart = new Cart()
-                        cart.user = currentUser.id
+                        cart.users_permissions_user = currentUser.id
 
-                        response2 = await cartApi.create(cart)
+                        const cartResponse = await cartApi.create(cart)
 
-                        console.log(response2)
+                        console.log(cartResponse)
+
+
 
                         const favorite= new Favorite()
                         favorite.user = currentUser.id

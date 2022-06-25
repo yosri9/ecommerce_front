@@ -5,24 +5,18 @@
 
     >
       <v-carousel-item
-          v-for="(color, i) in colors"
-          :key="color"
+          v-for="(item,i) in items"
+          :key="i"
+          :src="item.src"
       >
-        <v-sheet
-            :color="color"
-            height="100%"
-            tile
-        >
+
           <v-row
               class="fill-height"
               align="center"
               justify="center"
           >
-            <div class="text-h2">
-              Slide {{ i + 1 }}
-            </div>
+
           </v-row>
-        </v-sheet>
       </v-carousel-item>
     </v-carousel>
 
@@ -39,6 +33,20 @@ export default {
       'yellow darken-2',
       'red',
       'orange',
+    ],
+    items: [
+      {
+        src: 'https://www.sportsshoes.com/media/image/product-series/adidas-adios/mid-section.jpg',
+      },
+      {
+        src: 'https://cdn.sportsshoes.com/product/A/ADI15339/ADI15339_400_3.jpg',
+      },
+      {
+        src: 'https://cdn.sportsshoes.com/product/H/HEL1711/HEL1711_400_1.jpg',
+      },
+      {
+        src: 'https://cdn.sportsshoes.com/product/M/MON2196/MON2196_400_1.jpg',
+      },
     ],
   }),
 }

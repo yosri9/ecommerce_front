@@ -1,5 +1,5 @@
 <template >
-  <BaseInteractiveProductCart :isCartDisabled = false :product =product>
+  <BaseInteractiveProductCart :isCartDisabled = isCartDisabled :product =product>
 
     <v-spacer/>
   </BaseInteractiveProductCart>
@@ -51,7 +51,8 @@ export default {
     ]
   }),
   props:{
-     product: Product
+     product: Product,
+    isCartDisabled: Boolean
   },
 
 

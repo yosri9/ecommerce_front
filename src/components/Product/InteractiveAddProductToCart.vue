@@ -1,59 +1,56 @@
 <template>
-<BaseInteractiveProductCard :product="product" :isCartDisabled = isCartDisabled :count="count" :cart-item="cartItem">
-<template v-slot:X>
+  <BaseInteractiveProductCard :product="product" :isCartDisabled = isCartDisabled :count="count" >
+    <template v-slot:X>
 
-  <div class=" ml-5 fa-pull-right"  >
-    <v-btn rounded small   @click="removeMessage(2)">
-      X
-    </v-btn>
+      <div class=" ml-5 fa-pull-right"  >
+        <v-btn rounded small   @click="removeMessage(2)">
+          X
+        </v-btn>
 
 
-  </div>
+      </div>
 
-</template>
+    </template>
 
-  <template v-slot:price>
-    {{product.price *  cartItem.quantity + count}} $
-  </template>
-  <template v-slot:card-actions>
+    <template v-slot:price>
+      {{product.price *  count}} $
+    </template>
+    <template v-slot:card-actions>
 
-    <v-btn
-        color="blue"
-        class="white--text"
-        fab
-        icon
-        small
-        @click="increment()"
-    >
-      <v-icon> mdi-plus</v-icon>
-    </v-btn>
-    <div>{{ cartItem.quantity }}</div>
+      <v-btn
+          color="blue"
+          class="white--text"
+          fab
+          icon
+          small
+          @click="increment()"
+      >
+        <v-icon> mdi-plus</v-icon>
+      </v-btn>
+      <div>{{ count }}</div>
 
-    <v-btn
-        color="blue"
-        class="white--text"
-        fab
-        icon
-        small
-        @click="decrement()"
-    >
-      <v-icon> mdi-minus</v-icon>
-    </v-btn>
+      <v-btn
+          color="blue"
+          class="white--text"
+          fab
+          icon
+          small
+          @click="decrement()"
+      >
+        <v-icon> mdi-minus</v-icon>
+      </v-btn>
 
-  </template>
+    </template>
 
-</BaseInteractiveProductCard >
+  </BaseInteractiveProductCard>
 </template>
 
 <script>
 import BaseInteractiveProductCard from "@/components/Product/BaseInteractiveProductCard";
 import {Product} from "@/Model/product";
 import {storeToRefs} from "pinia";
-import {CartItem} from "@/Model/cart-item";
 
 const {useCartItemStore} = require("@/stores/cart-item-store");
-const ApiRouter = require("@/services/Api/api-router");
-const {CartItemApi} = require("@/services/Api/cart-item-api");
 export default {
   setup() {
     const cartItemStore = useCartItemStore()
@@ -64,19 +61,19 @@ export default {
   },
 
 
-  name: "CartInteractiveProductCard",
+  name: "InteractiveAddProductToCart",
   components: {BaseInteractiveProductCard},
   props:{
     product: Product,
     dialog: Boolean,
-    cartItem:CartItem,
-    isCartDisabled: Boolean
+    isCartDisabled:Boolean,
+
   },
   data: () => ({
     types: ['Places to Be', 'Places to See'],
     cards: ['Good', 'Best', 'Finest'],
     show: true,
-    count: 0,
+    count: 1,
     isFavorite: false,
 
     rightSocials: [
@@ -121,19 +118,9 @@ export default {
     },
 
     increment() {
-      const cartItemApi = new CartItemApi()
-      const cartItem = this.cartItem
-      cartItem.quantity ++
-      cartItemApi.update(cartItem,ApiRouter.CART_ITEMS)
       this.count++;
     },
     decrement() {
-
-      const cartItemApi = new CartItemApi()
-      const cartItem = this.cartItem
-      cartItem.quantity --
-      cartItemApi.update(cartItem,ApiRouter.CART_ITEMS)
-
       this.count--;
     },
     removeFromFavorite() {
